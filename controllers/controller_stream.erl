@@ -91,8 +91,7 @@ sse_init(#context{page_pid=PagePid}) ->
     TimerRef = erlang:send_after(?SSE_FLUSH_TIMEOUT, self(), flush),
     
     %% Retry after one second if there was an error.
-    %{ok, z_sse:retry(1000), #state{page_pid=PagePid, timer_ref=TimerRef, monitor_ref=MonitorRef}}.
-    {ok, z_sse:event(<<"hi">>), #state{page_pid=PagePid, timer_ref=TimerRef, monitor_ref=MonitorRef}}.
+    {ok, z_sse:retry(1000), #state{page_pid=PagePid, timer_ref=TimerRef, monitor_ref=MonitorRef}}.
 
 %% Called when a script is queued.
 sse_info(script_queued, #state{page_pid=Pid}=State) ->
